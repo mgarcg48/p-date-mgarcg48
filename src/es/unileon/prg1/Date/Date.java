@@ -246,5 +246,51 @@ public class Date{
 		}
 		return dias + this.day;
 	}
-
+	//acertar fecha aleatoria
+	public int numRandomTriesEqualDate(){
+        	int tries, d, m, y;
+        	tries = 0;
+        	do{
+        		m = (int) (Math.random()*12) + 1;
+        		d = (int) (Math.random()*this.daysOfMonth(m) ) + 1;
+        		y = this.year;
+        		tries++;
+        	} while ( !this.isSame(new Date(d,m,y) ) );
+        	return tries;
+  	}
+	//nombre del dia
+	private String nameOfDay(int day) {
+		String dayName;
+		switch (day) {
+		case 1: 
+			dayName = "Lunes";
+			break;
+		case 2: 
+			dayName = "Martes";
+			break;
+		case 3: 
+			dayName = "Miércoles";
+			break;
+		case 4: 
+			dayName = "Jueves";
+			break;
+		case 5: 
+			dayName = "Viernes";
+			break;
+		case 6: 
+			dayName = "Sábado";
+			break;
+		case 7: 
+			dayName = "Domingo";
+			break;
+		default:
+			dayName = "ERROR";
+		}
+		return dayName;
+	}
+	public String dayOfWeek(int firstOfJanuary){
+		int dayNumber;
+		dayNumber = ( daysPast() % 7 + firstOfJanuary ) % 7;
+		return nameOfDay(dayNumber);
+	}
 }
